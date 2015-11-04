@@ -422,13 +422,13 @@ def sortPhotos(src_dir, dest_dir, sort_format, rename_format, recursive=False,
 
         # Look for .xmp sidecar file and copy it if it exists
         if os.path.exists(src_file+'.xmp'):
-            if move_files:
-                shutil.move(src_file+'.xmp', dest_file+'.xmp')
-            else:
+            if copy_files:
                 if fileIsIdentical:
                     continue  # if file is same, we just ignore it (for copy option)
                 else:
                     shutil.copy2(src_file+'.xmp', dest_file+'.xmp')
+            else:
+                shutil.move(src_file+'.xmp', dest_file+'.xmp')
 
 
         if verbose:
